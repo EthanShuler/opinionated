@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation'
 import { Movie } from '../../../typings'
 import Image from 'next/image'
 import { backdropUrl } from '../../../utils/constants'
+import Review from './Review'
+import styles from './styles.module.css'
 
 interface PageProps {
   params: {
@@ -24,11 +26,13 @@ const Movie = async ({ params: { movieId }}: PageProps) => {
 
   return (
     <div>
-      <h1 className='text-4xl font-bold mb-4'>{movie.title}</h1>
+      <h1 className={styles.movieTitle}>{movie.title}</h1>
       <p>{movie.overview}</p>
       <Image alt={`${movie.title} poster`}
         src={`${backdropUrl}${movie?.backdrop_path || movie?.poster_path}`}
-        width={1920} height={1080} />
+        width={300} height={300} />
+      
+      <Review />
     </div>
   )
 }

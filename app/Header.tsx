@@ -1,12 +1,13 @@
 import Link from 'next/link'
+import styles from './styles.module.css'
 
 const Header = () => {
   return (
-    <header className='p-5 bg-blue-500 flex'>
-      <Link href='/' className='px-2 py-1 bg-white text-blue-500 rounded-lg'>
+    <header className={styles.navHeader}>
+      <Link href='/' className={styles.navLink}>
         Home
       </Link>
-      <Link href='/movies' className='px-2 py-1 bg-white text-blue-500 rounded-lg ml-4'>
+      <Link href='/movies' className={styles.navLink}>
         Movies
       </Link>
     </header>

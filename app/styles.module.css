@@ -1,0 +1,78 @@
+.scrollbar::-webkit-scrollbar {
+  width: 20px;
+  height: 20px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  border-radius: 100vh;
+  background: #b8d6d5;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background: #008b87;
+  border-radius: 100vh;
+  border: 3px solid #b8d6d5;
+}
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #144355;
+}
+
+.groupTitle {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  margin-left: 0.5rem;
+}
+
+.cardGroup {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  margin-left: 0.5rem;
+}
+
+.movieCard {
+  flex: none;
+  width: 8.333333%;
+  margin-right: 2rem;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 1);
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+.movieTitle {
+  overflow: auto;	
+  font-weight: 700;
+}
+.movieTitle:hover {
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .movieCard {
+    width: 16.666667%;
+  }   
+}
+
+.navHeader {
+  padding: 1.25rem;
+  background-color: #008b87;
+  display: flex;
+  gap: 1rem;
+}
+
+.navLink {
+  padding: 0.25rem 0.5rem;
+  background-color: #b8d6d5;
+  color: #144355;
+  border-radius: 0.5rem;
+
+}

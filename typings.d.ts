@@ -15,3 +15,8 @@ export interface Movie {
   runtime: number
   vote_count: number
 }
+
+export interface Review {
+  rating: number
+  content: string
+}
