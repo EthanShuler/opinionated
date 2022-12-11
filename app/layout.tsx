@@ -1,4 +1,5 @@
 import './globals.css'
+import Header from './Header'
 
 const RootLayout =({ children, }: { children: React.ReactNode }) => {
   return (
@@ -8,7 +9,10 @@ const RootLayout =({ children, }: { children: React.ReactNode }) => {
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+      </body>
     </html>
   )
 }
