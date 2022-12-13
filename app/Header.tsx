@@ -2,9 +2,9 @@ import Link from 'next/link'
 import styles from './styles.module.css'
 
 const navLinks = [
-  { href: '/', label: 'HOME' },
+  { href: '/', label: 'SOUNDTRACKED' },
   { href: '/movies', label: 'MOVIES' },
-  { href: '/account', label: 'ACCOUNT' },
+  { href: '/composers', label: 'COMPOSERS' },
   { href: '/lists', label: 'LISTS' },
 ]
 
@@ -16,6 +16,9 @@ const Header = () => {
           {label}
         </Link>
       ))}
+      <Link className={styles.accountLink} href={'/account'}>
+          ACCOUNT
+        </Link>
     </header>
   )
 }

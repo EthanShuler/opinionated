@@ -1,11 +1,13 @@
 import React from 'react'
+import Search from './Search'
 
-const Movie = () => {
+const Movies = () => {
   return (
     <div>
       <p>Movies Page</p>
+      <Search />
     </div>
   )
 }
 
-export default Movie
+export default Movies

@@ -1,0 +1,37 @@
+.Button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  padding: 0 15px;
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 500;
+  height: 35px;
+  background-color: #008b87;
+  color: white;
+}
+.Button:hover {
+  background-color: #00b4a0;
+}
+.Button:focus {
+  box-shadow: 0 0 0 2px #b8d6d5;
+}
+
+.Input {
+  width: 50%;
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  padding: 0 10px;
+  font-size: 15px;
+  line-height: 1;
+  color: hsl(250, 43.0%, 48.0%);
+  box-shadow:  0 0 0 1px hsl(252, 71.0%, 83.7%);
+  height: 35px;
+}
+.Input:focus {
+  box-shadow: 0 0 0 2px hsl(252, 68.6%, 76.3%);
+}

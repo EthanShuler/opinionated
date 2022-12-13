@@ -1,7 +1,7 @@
 import React from 'react'
 import tmdbRequests from '../../../utils/tmdbRequests'
 import { notFound } from 'next/navigation'
-import { MovieDetail } from '../../../typings'
+import { Credits, MovieDetail } from '../../../typings'
 import Image from 'next/image'
 import { tmdbUrlMediuim, tmdbUrlOriginal } from '../../../utils/constants'
 import Review from './Review'
@@ -21,8 +21,16 @@ const fetchMovie = async (movieId: string) => {
   return data
 }
 
+const fetchComposers = async (movieId: string) => {
+  const res = await fetch(tmdbRequests.getMovieCredits(movieId))
+  const data: Credits = await res.json()
+  const composers = data.crew.filter(crew => crew.job == 'Original Music Composer')
+  return composers
+}
+
 const Movie = async ({ params: { movieId }}: PageProps) => {
   const movie = await fetchMovie(movieId)
+  const composers = await fetchComposers(movieId)
 
   if (!movie.id) return notFound()
 
@@ -38,7 +46,7 @@ const Movie = async ({ params: { movieId }}: PageProps) => {
           <p key={genre.id}>{genre.name}</p>
         ))}
         <p>&#x2022;</p>
-        <p>{formatTime(movie.runtime)}</p>
+        <p>{movie?.runtime ? formatTime(movie.runtime) : ''}</p>
       </div>
       <p className={styles.tagline}>{movie.tagline}</p>
       <div className={styles.mediaRow}>
@@ -50,6 +58,10 @@ const Movie = async ({ params: { movieId }}: PageProps) => {
       </div>
       <h3>Overview</h3>
       <p>{movie.overview}</p>
+      <h3>Music</h3>
+      {composers.map(composer => (
+        <p key={composer.id}>{composer.job}: <span className={styles.composer}>{composer.name}</span></p>
+      ))}
       <Review />
     </div>
       

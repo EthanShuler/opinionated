@@ -178,6 +178,10 @@
   box-shadow: 0 0 0 2px hsl(252, 68.6%, 76.3%);
 }
 
+.composer {
+  font-weight: bold;
+}
+
 @keyframes overlayShow {
   from {
     opacity: 0;
