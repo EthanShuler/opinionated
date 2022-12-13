@@ -9,7 +9,7 @@ const Review = () => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <button className={styles.Button}>Write a review</button>
+        <button className={`${styles.Button} ${styles.openButton}`}>Write a review</button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className={styles.dialogOverlay} />
@@ -42,24 +42,26 @@ const ReviewForm = () => {
 
   return (
     <div>
-      {rating}
-      {content}
+      <p>chosen rating: {rating}</p>
+      <p>typed review: {content}</p>
       <form onSubmit={handleSubmit}>
-        <fieldset className={styles.Fieldset}>
+        <div className={styles.Fieldset}>
           <label className={styles.Label} htmlFor='rating'>Rating</label>
           <StarRating rating={rating} setRating={setRating} />
-        </fieldset>
-        <fieldset className={styles.Fieldset}>
+        </div>
+        <div className={styles.Fieldset}>
           <label className={styles.Label} htmlFor='content'>Review</label>
           <textarea
-            className='Input'
+            className={styles.Input}
             value={content}
+            cols={30}
+            rows={10}
             onChange={(e) => setContent(e.target.value)}
           />
-        </fieldset>
+        </div>
         <div style={{ display: 'flex', marginTop: 25, justifyContent: 'flex-end' }}>
           <Dialog.Close asChild>
-            <button className={styles.Button}>Save changes</button>
+            <button className={`${styles.Button} ${styles.saveButton}`}>Save changes</button>
           </Dialog.Close>
         </div>
         
@@ -77,8 +79,8 @@ const StarRating = ({rating, setRating}:StarRatingProps) => {
   const [hover, setHover] = useState(0)
 
   return (
-    <div className='star-rating'>
-      {[...Array(5)].map((star, index) => {
+    <div className={styles.starRating}>
+      {[...Array(10)].map((star, index) => {
         index += 1
         return (
           <button
@@ -89,10 +91,11 @@ const StarRating = ({rating, setRating}:StarRatingProps) => {
             onMouseEnter={() => setHover(index)}
             onMouseLeave={() => setHover(rating)}
           >
-            <span>&#9733;</span>
+            <span className={styles.star}>&#9733;</span>
           </button>
         )
       })}
+      {hover}
     </div>
   )
 }

@@ -1,8 +1,36 @@
+.movieContainer {
+  width: 80%;
+  margin: 0 auto;
+}
+
 .movieTitle{
   font-size: 2.25rem;
   line-height: 2.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
+}
+
+.movieFacts {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.tagline {
+  font-style: italic;
+}
+
+.mediaRow {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+.poster {
+  border-radius: 1em;
+}
+.backdrop {
+  flex: 1;
+  border-radius: 1em;
 }
 
 .starButton {
@@ -12,8 +40,12 @@
   cursor: pointer;
 }
 
+.star {
+  font-size: x-large;
+}
+
 .starFilled {
-  color: #f8e825;
+  color: #e4d640;
 }
 
 .starEmpty {
@@ -32,6 +64,28 @@
   height: 35px;
 }
 
+.openButton{
+  background-color: #008b87;
+  color: white;
+}
+.openButton:hover {
+  background-color: #00b4a0;
+}
+.openButton:focus {
+  box-shadow: 0 0 0 2px #b8d6d5;
+}
+
+.saveButton{
+  background-color: rgb(0, 99, 0);
+  color: white;
+}
+.saveButton:hover {
+  background-color: #008b87;
+}
+.saveButton:focus {
+  box-shadow: 0 0 0 2px #b8d6d5;
+}
+
 .dialogOverlay {
   background-color:  hsla(0, 0%, 0%, 0.439);;
   position: fixed;
@@ -48,7 +102,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90vw;
-  max-width: 450px;
+  max-width: 500px;
   max-height: 85vh;
   padding: 25px;
   animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
