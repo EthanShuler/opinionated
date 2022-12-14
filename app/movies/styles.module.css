@@ -8,14 +8,20 @@
   line-height: 1;
   font-weight: 500;
   height: 35px;
-  background-color: #008b87;
+}
+.Button:hover{
+  cursor: pointer;
+}
+
+.themedButton{
+  background-color: var(--primary);
   color: white;
 }
-.Button:hover {
-  background-color: #00b4a0;
+.themedButton:hover {
+  background-color: var(--primary-shadow);
 }
-.Button:focus {
-  box-shadow: 0 0 0 2px #b8d6d5;
+.themedButton:focus {
+  box-shadow: 0 0 0 2px var(--tertiary);
 }
 
 .Input {

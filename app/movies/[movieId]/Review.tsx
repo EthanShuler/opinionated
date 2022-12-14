@@ -9,7 +9,7 @@ const Review = () => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <button className={`${styles.Button} ${styles.openButton}`}>Write a review</button>
+        <button className={`${styles.Button} ${styles.themedButton}`}>Write a review</button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className={styles.dialogOverlay} />
@@ -61,7 +61,7 @@ const ReviewForm = () => {
         </div>
         <div style={{ display: 'flex', marginTop: 25, justifyContent: 'flex-end' }}>
           <Dialog.Close asChild>
-            <button className={`${styles.Button} ${styles.saveButton}`}>Save changes</button>
+            <button className={`${styles.Button} ${styles.themedButton}`}>Save changes</button>
           </Dialog.Close>
         </div>
         

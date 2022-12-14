@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { SearchResults } from '../../../../typings'
 import { tmdbUrlSmall } from '../../../../utils/constants'
 import tmdbRequests from '../../../../utils/tmdbRequests'
+import Search from '../../Search'
 import styles from './styles.module.css'
 
 type PageProps = {
@@ -19,20 +20,36 @@ const search = async (searchTerm: string) => {
 
 const SearchResults = async ({ params: { searchTerm } }: PageProps) => {
   const searchResults = await search(searchTerm)
+  if (!searchResults || searchResults.length == 0) {
+    return (
+      <div className={styles.container}>
+        <Search />
+        <p className={styles.empty}>Nothing Found</p>
+      </div>
+    )
+  }
 
   return (
     <div className={styles.container}>
-      <ol>
+      <Search />
+      <div className={styles.results}>
         {searchResults.map((movie) => (
-          <li key={movie.id} className={styles.movieCard}>
-            <Image alt={movie.title} src={`${tmdbUrlSmall}${movie.poster_path}`} width={100} height={100} />
-            <div className={styles.movieInfo}>
-              <Link className={styles.movieTitle} href={`${/movies/}${movie.id}`}>{movie.title}</Link>
-              <p>{movie.overview}</p>
+          <div key={movie.id} className={styles.movieCard}>
+            <div className={styles.wrapper}>
+              <div className={styles.image}>
+                <div className={styles.poster}>
+                  <Image alt={movie.title} src={`${tmdbUrlSmall}${movie.poster_path}`} fill={true} className={styles.posterImage} />
+                </div>
+              </div>
+              <div className={styles.movieInfo}>
+                <Link className={styles.movieTitle} href={`${/movies/}${movie.id}`}>{movie.title}</Link>
+                <p className={styles.movieOverview}>{movie.overview}</p>
+              </div>
             </div>
-          </li>
+            
+          </div>
         ))}
-      </ol>
+      </div>
     </div>
   )
 }

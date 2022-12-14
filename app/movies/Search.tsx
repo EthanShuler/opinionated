@@ -22,7 +22,7 @@ const Search = () => {
         onChange={(e) => setSearch(e.target.value)}
         className={styles.Input}
       />
-      <button type='submit' className={styles.Button}>
+      <button type='submit' className={`${styles.Button} ${styles.themedButton}`}>
         Search
       </button>
     </form>

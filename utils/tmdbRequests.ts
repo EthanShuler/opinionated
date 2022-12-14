@@ -13,11 +13,16 @@ const searchMovies = (query: string) => {
   return `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`
 }
 
+const getPerson = (id: string) => {
+  return `${BASE_URL}/person/${id}?api_key=${API_KEY}&language=en-US`
+}
+
 const tmdbRequests = {
   getTrendingMovies: `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=en-US`,
   getMovie,
   getMovieCredits,
   searchMovies,
+  getPerson,
 }
 
 export default tmdbRequests

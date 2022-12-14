@@ -5,17 +5,17 @@
 
 .scrollbar::-webkit-scrollbar-track {
   border-radius: 100vh;
-  background: #b8d6d5;
+  background: var(--secondary);
 }
 
 .scrollbar::-webkit-scrollbar-thumb {
-  background: #008b87;
+  background: var(--primary);
   border-radius: 100vh;
-  border: 3px solid #b8d6d5;
+  border: 3px solid var(--secondary);
 }
 
 .scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #144355;
+  background: var(--tertiary);
 }
 
 .moviesGrouping {
@@ -70,18 +70,18 @@
 
 .navHeader {
   padding: 1.25rem;
-  background-color: #144355;
+  background-color: var(--tertiary);
   display: flex;
   gap: 1rem;
 }
 
 .navLink {
   padding: 0.25rem 0.5rem;
-  color: #b8d6d5;
+  color: var(--secondary);
 }
 
 .accountLink {
-  color: #b8d6d5;
+  color: var(--secondary);
   padding: 0.25rem 0.5rem;
   margin-left: auto;
 }
