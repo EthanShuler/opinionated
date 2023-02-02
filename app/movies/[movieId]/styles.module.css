@@ -145,6 +145,11 @@
   font-weight: bold;
 }
 
+.composer:hover {
+  cursor: pointer;
+  color: rgb(41, 41, 134);
+}
+
 .reviews {
   display: flex;
   flex-direction: column;

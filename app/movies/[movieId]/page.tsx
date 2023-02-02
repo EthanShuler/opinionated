@@ -66,7 +66,9 @@ const Movie = async ({ params: { movieId }}: PageProps) => {
       <p>{movie.overview}</p>
       <h3>Music</h3>
       {composers.map(composer => (
-        <p key={composer.id}>{composer.job}: <span className={styles.composer}><Link href={`/composers/${composer.id}`}>{composer.name}</Link></span></p>
+        <p key={composer.id}>{composer.job}: <span className={styles.composer}>
+          <Link href={`/composers/${composer.id}`}>{composer.name}</Link>
+        </span></p>
       ))}
       <Review />
       <Reviews />
