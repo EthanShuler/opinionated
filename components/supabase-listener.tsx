@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { useSupabase } from './supabase-provider'
 
-const SupabaseListener = ({ serverAccessToken }: { serverAccessToken: string }) => {
+const SupabaseListener = ({ serverAccessToken }: { serverAccessToken?: string }) => {
   const { supabase } = useSupabase()
   const router = useRouter()
 
