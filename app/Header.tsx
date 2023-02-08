@@ -4,7 +4,7 @@ import styles from './styles.module.css'
 const navLinks = [
   { href: '/', label: 'SOUNDTRACKED' },
   { href: '/movies', label: 'MOVIES' },
-  { href: '/composers', label: 'COMPOSERS' },
+  { href: '/people', label: 'PEOPLE' },
   { href: '/lists', label: 'LISTS' },
 ]
 
@@ -16,7 +16,7 @@ const Header = () => {
           {label}
         </Link>
       ))}
-      <Link className={styles.accountLink} href={'/account'}>
+      <Link className={styles.accountLink} href={'/register'}>
           ACCOUNT
         </Link>
     </header>

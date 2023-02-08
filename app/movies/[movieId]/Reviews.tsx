@@ -1,24 +1,12 @@
+import 'server-only'
 import { formatDate } from '../../../utils/dateTime'
 import styles from './styles.module.css'
+import supabase from '../../../utils/supabase'
+import Link from 'next/link'
+import { createClient } from '../../../utils/supabase-server'
 
-const exampleReviews = [
-  {
-    id: 1,
-    user: 'John Doe',
-    title: 'SO GOOD',
-    rating: 4,
-    review: 'This movie was great! I loved it!',
-    date: '2021-01-01'
-  },
-  {
-    id: 2,
-    user: 'Jane Doe',
-    rating: 10,
-    title: 'gargbage',
-    review: 'This movie was bad! I no loved it!',
-    date: '2021-02-02'
-  },
-]
+// do not cache this page
+export const revalidate = 0
 
 const StarRating = ({ rating }: { rating: number }) => {
   const stars = []
@@ -32,22 +20,31 @@ const StarRating = ({ rating }: { rating: number }) => {
   return <>{stars}</>
 }
 
-const Reviews = () => {
+const Reviews = async () => {
+  const supabase = createClient()
+  const { data: reviews } = await supabase.from('reviews').select('id, title, content, rating')
+
+  if (!reviews) {
+    return <p>No Reviews found.</p>
+  }
+
   return (
     <div>
       <h2>Reviews</h2>
       <div className={styles.reviews}>
-        {exampleReviews.map(review => (
+        <>
+        {reviews.map(review => (
           <div key={review.id} className={styles.reviewContainer}>
+            <Link href={`/reviews/${review.id}`}>{review.title}</Link>
             <h4>{review.title}: {review.rating}</h4>
             <StarRating rating={review.rating} />
             <div className={styles.reviewInfo}>
-              <p>{review.user}</p>
-              <p>{formatDate(review.date)}</p>
+              {/* <p>{review.user}</p> */}
+              {/* <p>{formatDate(review.date)}</p> */}
             </div>
-            <p>{review.review}</p>
+            <p>{review.content}</p>
           </div>
-        ))}
+        ))} </>
       </div>
     </div>
   )

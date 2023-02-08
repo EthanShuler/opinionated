@@ -5,6 +5,7 @@ import tmdbRequests from '../utils/tmdbRequests'
 import { tmdbUrlSmall } from '../utils/constants'
 import Link from 'next/link'
 import styles from './styles.module.css'
+import supabase from '../utils/supabase'
 
 type FetchResults = {
   results: [Movie]
@@ -16,11 +17,20 @@ const getTrendingMovies = async () => {
   return data.results
 }
 
+ const getUser = async () => {
+    const { data: user, error } = await supabase.auth.getUser()
+    console.log(user)
+    return user
+  }
+
 const Home = async () => {
+  const user = await supabase.auth.getUser()
+
   const movies = await getTrendingMovies()
 
   return (
     <main>
+      {/* {user} */}
       <div className={styles.moviesGrouping}>
         <h1 className={styles.groupTitle}>Trending Movies</h1>
         <div className={`${styles.cardGroup} ${styles.scrollbar}`}>
