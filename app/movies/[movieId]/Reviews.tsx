@@ -34,16 +34,13 @@ const Reviews = async () => {
       <div className={styles.reviews}>
         <>
         {reviews.map(review => (
-          <div key={review.id} className={styles.reviewContainer}>
-            <Link href={`/reviews/${review.id}`}>{review.title}</Link>
-            <h4>{review.title}: {review.rating}</h4>
-            <StarRating rating={review.rating} />
-            <div className={styles.reviewInfo}>
-              {/* <p>{review.user}</p> */}
-              {/* <p>{formatDate(review.date)}</p> */}
-            </div>
-            <p>{review.content}</p>
-          </div>
+            <Link key={review.id} href={`/reviews/${review.id}`}>{review.title} className={styles.reviewContainer}
+              <h4>{review.title}: {review.rating}</h4>
+              <StarRating rating={review.rating} />
+              <div className={styles.reviewInfo}>
+              </div>
+              <p>{review.content}</p>
+            </Link>
         ))} </>
       </div>
     </div>
