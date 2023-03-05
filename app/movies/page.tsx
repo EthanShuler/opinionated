@@ -5,7 +5,7 @@ const Movies = () => {
   return (
     <div>
       <p>Movies Page</p>
-      <Search />
+      <Search searchTerm='' />
     </div>
   )
 }
