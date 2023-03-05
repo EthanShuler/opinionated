@@ -3,8 +3,12 @@ import { useRouter } from 'next/navigation'
 import React, { FormEvent, useState } from 'react'
 import styles from './styles.module.css'
 
-const Search = () => {
-  const [search, setSearch] = useState('')
+interface PageProps {
+  searchTerm: string
+}
+
+const Search = ({searchTerm} : PageProps) => {
+  const [search, setSearch] = useState(searchTerm || '')
   const router = useRouter()
 
   const handleSearch = async (e: FormEvent<HTMLFormElement>) => {

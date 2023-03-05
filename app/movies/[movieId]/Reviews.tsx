@@ -1,7 +1,6 @@
 import 'server-only'
 import { formatDate } from '../../../utils/dateTime'
 import styles from './styles.module.css'
-import supabase from '../../../utils/supabase'
 import Link from 'next/link'
 import { createClient } from '../../../utils/supabase-server'
 
@@ -22,7 +21,7 @@ const StarRating = ({ rating }: { rating: number }) => {
 
 const Reviews = async () => {
   const supabase = createClient()
-  const { data: reviews } = await supabase.from('reviews').select('id, title, content, rating')
+  const { data: reviews } = await supabase.from('reviews').select('*')
 
   if (!reviews) {
     return <p>No Reviews found.</p>
@@ -34,12 +33,12 @@ const Reviews = async () => {
       <div className={styles.reviews}>
         <>
         {reviews.map(review => (
-            <Link key={review.id} href={`/reviews/${review.id}`}>{review.title} className={styles.reviewContainer}
+            <Link key={review.id} href={`/reviews/${review.id}`} className={styles.reviewContainer}>
               <h4>{review.title}: {review.rating}</h4>
               <StarRating rating={review.rating} />
               <div className={styles.reviewInfo}>
+                <p>{review.content}</p>
               </div>
-              <p>{review.content}</p>
             </Link>
         ))} </>
       </div>

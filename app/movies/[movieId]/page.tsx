@@ -22,16 +22,15 @@ const fetchMovie = async (movieId: string) => {
   return data
 }
 
-const fetchComposers = async (movieId: string) => {
+const fetchCredits = async (movieId: string) => {
   const res = await fetch(tmdbRequests.getMovieCredits(movieId))
   const data: Credits = await res.json()
-  const composers = data.crew.filter(crew => crew.job == 'Original Music Composer')
-  return composers
+  return data
 }
 
 const Movie = async ({ params: { movieId }}: PageProps) => {
   const movie = await fetchMovie(movieId)
-  const composers = await fetchComposers(movieId)
+  const credits = await fetchCredits(movieId)
 
   if (!movie.id) return notFound()
 
@@ -64,13 +63,17 @@ const Movie = async ({ params: { movieId }}: PageProps) => {
       </div>
       <h3>Overview</h3>
       <p>{movie.overview}</p>
-      <h3>Music</h3>
-      {composers.map(composer => (
-        <p key={composer.id}>{composer.job}: <span className={styles.composer}>
-          <Link href={`/composers/${composer.id}`}>{composer.name}</Link>
+      {/* {credits.cast.map(actor => (
+        <p key={actor.id}>{actor.character}: <span className={styles.composer}>
+          <Link href={`/people/${actor.id}`}>{actor.name}</Link>
         </span></p>
       ))}
-      <Review />
+      {credits.crew.map(crew => (
+        <p key={crew.id}>{crew.job}: <span className={styles.composer}>
+          <Link href={`/people/${crew.id}`}>{crew.name}</Link>
+        </span></p>
+      ))} */}
+      <Review movieId={movie.id} />
       {/* @ts-expect-error Server Component */}
       <Reviews />
     </div>

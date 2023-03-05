@@ -23,7 +23,7 @@ const SearchResults = async ({ params: { searchTerm } }: PageProps) => {
   if (!searchResults || searchResults.length == 0) {
     return (
       <div className={styles.container}>
-        <Search />
+        <Search searchTerm={decodeURI(searchTerm)} />
         <p className={styles.empty}>Nothing Found</p>
       </div>
     )
@@ -31,23 +31,24 @@ const SearchResults = async ({ params: { searchTerm } }: PageProps) => {
 
   return (
     <div className={styles.container}>
-      <Search />
+      <Search searchTerm={decodeURI(searchTerm)} />
       <div className={styles.results}>
         {searchResults.map((movie) => (
-          <div key={movie.id} className={styles.movieCard}>
-            <div className={styles.wrapper}>
-              <div className={styles.image}>
-                <div className={styles.poster}>
-                  <Image alt={movie.title} src={`${tmdbUrlSmall}${movie.poster_path}`} fill={true} className={styles.posterImage} />
+          <Link key={movie.id} href={`${/movies/}${movie.id}`}>
+            <div className={styles.movieCard}>
+              <div className={styles.wrapper}>
+                <div className={styles.image}>
+                  <div className={styles.poster}>
+                    <Image alt={movie.title} src={`${tmdbUrlSmall}${movie.poster_path}`} fill={true} className={styles.posterImage} />
+                  </div>
+                </div>
+                <div className={styles.movieInfo}>
+                  <h4>{movie.title}</h4>
+                  <p className={styles.movieOverview}>{movie.overview}</p>
                 </div>
               </div>
-              <div className={styles.movieInfo}>
-                <Link className={styles.movieTitle} href={`${/movies/}${movie.id}`}>{movie.title}</Link>
-                <p className={styles.movieOverview}>{movie.overview}</p>
-              </div>
             </div>
-            
-          </div>
+          </Link>
         ))}
       </div>
     </div>
