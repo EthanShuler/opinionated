@@ -19,9 +19,16 @@ const StarRating = ({ rating }: { rating: number }) => {
   return <>{stars}</>
 }
 
-const Reviews = async () => {
+interface ReviewsProps {
+  movieId: number
+}
+
+const Reviews = async ({ movieId }: ReviewsProps) => {
   const supabase = createClient()
-  const { data: reviews } = await supabase.from('reviews').select('*')
+  const { data: reviews } = await supabase
+  .from('reviews')
+  .select('*')
+  .eq('movie_id', movieId)
 
   if (!reviews) {
     return <p>No Reviews found.</p>
@@ -32,7 +39,8 @@ const Reviews = async () => {
       <h2>Reviews</h2>
       <div className={styles.reviews}>
         <>
-        {reviews.map(review => (
+        {reviews.length == 0 ? (<p>No reviews</p>) : 
+        reviews.map(review => (
             <Link key={review.id} href={`/reviews/${review.id}`} className={styles.reviewContainer}>
               <h4>{review.title}: {review.rating}</h4>
               <StarRating rating={review.rating} />

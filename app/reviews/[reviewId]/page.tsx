@@ -9,9 +9,7 @@ interface PageProps {
 
 const Review = async ({ params: { reviewId }}: PageProps) => {
   const supabase = createClient()
-  console.log(`id: ${reviewId}`)
   const { data } = await supabase.from('reviews').select().match({ id: reviewId }).single()
-  console.log(`data: ${data}`)
 
   if (!data) {
     notFound()
