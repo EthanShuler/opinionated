@@ -32,6 +32,7 @@ const Reviews = async ({ movieId }: ReviewsProps) => {
         reviews.map(review => (
             <Link key={review.id} href={`/reviews/${review.id}`} className={styles.reviewContainer}>
               <h3>{review.title}: {review.rating}</h3>
+              {/* @ts-expect-error null */}
               <h4>{review.profiles.full_name}</h4>
               <StarRating rating={review.rating} />
               <div className={styles.reviewInfo}>
