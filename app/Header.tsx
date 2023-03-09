@@ -1,5 +1,7 @@
+'use client'
 import Link from 'next/link'
 import styles from './styles.module.css'
+import { useSupabase } from '../components/supabase-provider'
 
 const navLinks = [
   { href: '/', label: 'SOUNDTRACKED' },
@@ -9,6 +11,7 @@ const navLinks = [
 ]
 
 const Header = () => {
+  const { session } = useSupabase()
   return (
     <header className={styles.navHeader}>
       {navLinks.map(({ href, label }) => (
@@ -16,9 +19,14 @@ const Header = () => {
           {label}
         </Link>
       ))}
-      <Link className={styles.accountLink} href={'/register'}>
-          ACCOUNT
+      {session ? ( 
+        <Link className={styles.accountLink} href={'/register'}>
+          {session.user.email}
         </Link>
+       ) : (
+        <Link className={styles.accountLink} href={'/register'}>
+          SIGN IN
+        </Link> )}
     </header>
   )
 }

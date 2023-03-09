@@ -1,6 +1,7 @@
 'use client'
 
 import { useSupabase } from '../../components/supabase-provider'
+import MyReviews from './MyReviews'
 
 // Supabase auth needs to be triggered client-side
 const Login = () => {
@@ -26,7 +27,8 @@ const Login = () => {
   return session ? (
     <>
         <button onClick={handleLogout}>Logout</button>
-        {session.user.email}
+        <p>{session.user.email}</p>
+        {/* <MyReviews userId={session.user.id} /> */}
     </>
   ) : (
     <>

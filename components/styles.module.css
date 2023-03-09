@@ -1,0 +1,18 @@
+.starButton {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.star {
+  font-size: x-large;
+}
+
+.starFilled {
+  color: #e4d640;
+}
+
+.starEmpty {
+  color: #ccc;
+}

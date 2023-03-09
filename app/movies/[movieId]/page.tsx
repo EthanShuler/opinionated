@@ -74,6 +74,8 @@ const Movie = async ({ params: { movieId }}: PageProps) => {
         </span></p>
       ))} */}
       <Review movieId={movie.id} />
+    </div>
+    <div className={styles.reviewsContainer}>
       {/* @ts-expect-error Server Component */}
       <Reviews movieId={movie.id}/>
     </div>

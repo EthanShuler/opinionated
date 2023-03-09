@@ -6,6 +6,36 @@ import { Cross2Icon } from '@radix-ui/react-icons'
 import styles from './styles.module.css'
 import { useSupabase } from '../../../components/supabase-provider'
 
+interface StarRatingFormProps {
+  rating: number
+  setRating: (rating: number) => void
+}
+
+export const StarRatingForm = ({ rating, setRating }: StarRatingFormProps) => {
+  const [hover, setHover] = useState(0)
+
+  return (
+    <div className={styles.starRating}>
+      {[...Array(10)].map((star, index) => {
+        index += 1
+        return (
+          <button
+            type='button'
+            key={index}
+            className={`${styles.starButton} ${index <= (hover || rating) ? styles.starFilled : styles.starEmpty}`}
+            onClick={() => setRating(index)}
+            onMouseEnter={() => setHover(index)}
+            onMouseLeave={() => setHover(rating)}
+          >
+            <span className={styles.star}>&#9733;</span>
+          </button>
+        )
+      })}
+      {hover}
+    </div>
+  )
+}
+
 interface ReviewProps {
   movieId: number
 }
@@ -14,6 +44,7 @@ const Review = ({ movieId }: ReviewProps) => {
   const { supabase, session } = useSupabase()
 
   const [open, setOpen] = useState(false)
+  const [title, setTitle] = useState('')
   const [rating, setRating] = useState(0)
   const [content, setContent] = useState('')
 
@@ -22,7 +53,7 @@ const Review = ({ movieId }: ReviewProps) => {
     const { data, error } = await supabase
       .from('reviews')
       .insert([
-        { title: 'test title', content, rating, movie_id: movieId, user_id: session?.user.id },
+        { title, content, rating, movie_id: movieId, user_id: session?.user.id },
       ])
       setOpen(false)
     }
@@ -43,8 +74,14 @@ const Review = ({ movieId }: ReviewProps) => {
             </Dialog.Description>
             <form onSubmit={handleSubmit}>
               <div className={styles.Fieldset}>
+                <label className={styles.Label} htmlFor='title'>Title</label>
+                <input placeholder='Title' className={styles.Input}
+                  type='text' name='title' id='title' required
+                  onChange={(e) => setTitle(e.target.value)} />
+              </div>
+              <div className={styles.Fieldset}>
                 <label className={styles.Label} htmlFor='rating'>Rating</label>
-                <StarRating rating={rating} setRating={setRating} />
+                <StarRatingForm rating={rating} setRating={setRating} />
               </div>
               <div className={styles.Fieldset}>
                 <label className={styles.Label} htmlFor='content'>Review</label>
@@ -69,36 +106,6 @@ const Review = ({ movieId }: ReviewProps) => {
         </Dialog.Portal>
       </Dialog.Root>
     ) : null
-  }
-
-  interface StarRatingProps {
-    rating: number
-    setRating: (rating: number) => void
-  }
-
-  const StarRating = ({ rating, setRating }: StarRatingProps) => {
-    const [hover, setHover] = useState(0)
-
-    return (
-      <div className={styles.starRating}>
-        {[...Array(10)].map((star, index) => {
-          index += 1
-          return (
-            <button
-              type='button'
-              key={index}
-              className={`${styles.starButton} ${index <= (hover || rating) ? styles.starFilled : styles.starEmpty}`}
-              onClick={() => setRating(index)}
-              onMouseEnter={() => setHover(index)}
-              onMouseLeave={() => setHover(rating)}
-            >
-              <span className={styles.star}>&#9733;</span>
-            </button>
-          )
-        })}
-        {hover}
-      </div>
-    )
   }
 
   export default Review
