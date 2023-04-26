@@ -30,19 +30,16 @@ const Home = async () => {
 
   return (
     <main>
-      {/* {user} */}
-      <div className={styles.moviesGrouping}>
+      <div>
         <h1 className={styles.groupTitle}>Trending Movies</h1>
         <div className={`${styles.cardGroup} ${styles.scrollbar}`}>
           {movies.map((movie) => (
             <Link href={`/movies/${movie.id}`} key={movie.id} className={styles.movieCard}>
-              <div className={styles.movieCardInterior}>
                 <Image alt={`${movie.title} poster`}
                   src={`${tmdbUrlSmall}${movie?.poster_path || movie?.backdrop_path}`}
                   width={288}
                   height={300}/>
                 <h3 className={styles.movieTitle}>{movie.title}</h3>
-              </div>
             </Link>
           ))}
         </div>

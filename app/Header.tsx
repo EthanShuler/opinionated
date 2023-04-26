@@ -4,7 +4,7 @@ import styles from './styles.module.css'
 import { useSupabase } from '../components/supabase-provider'
 
 const navLinks = [
-  { href: '/', label: 'SOUNDTRACKED' },
+  { href: '/', label: 'OPINIONATED' },
   { href: '/movies', label: 'MOVIES' },
   { href: '/people', label: 'PEOPLE' },
   { href: '/lists', label: 'LISTS' },

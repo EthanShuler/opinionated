@@ -39,7 +39,7 @@ const SearchResults = async ({ params: { searchTerm } }: PageProps) => {
               <div className={styles.wrapper}>
                 <div className={styles.image}>
                   <div className={styles.poster}>
-                    <Image alt={movie.title} src={`${tmdbUrlSmall}${movie.poster_path}`} fill={true} className={styles.posterImage} />
+                    <Image alt={movie.title} src={`${tmdbUrlSmall}${movie.poster_path}`} fill={true} className={styles.poster} />
                   </div>
                 </div>
                 <div className={styles.movieInfo}>
